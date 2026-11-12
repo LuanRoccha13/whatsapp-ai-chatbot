@@ -66,8 +66,6 @@ async function startWhatsApp() {
         if (type !== 'notify') return;
 
         for (const msg of messages) {
-            // Ignora mensagens do próprio bot ou sem conteúdo
-            if (msg.key.fromMe) continue;
             if (!msg.message) continue;
 
             const remoteJid = msg.key.remoteJid || '';
@@ -78,17 +76,28 @@ async function startWhatsApp() {
             // Ignora grupos, canais/newsletters e status/broadcasts
             if (isGroup || isNewsletter || isBroadcast) continue;
 
-            const senderPhone = remoteJid.replace('@s.whatsapp.net', '');
-            const senderName = msg.pushName || 'Cliente';
-
             // Extrai texto da mensagem
-            const messageText = 
+            let messageText = 
                 msg.message.conversation ||
                 msg.message.extendedTextMessage?.text ||
                 msg.message.imageMessage?.caption ||
                 '';
 
             if (!messageText.trim()) continue;
+
+            // Modo de Auto-Teste (Permite testar conversando consigo mesmo no WhatsApp!)
+            // Se você mandou mensagem para você mesmo com prefixo #bot ou #teste (ex: "#bot quais os serviços?")
+            if (msg.key.fromMe) {
+                if (messageText.startsWith('#bot') || messageText.startsWith('#teste')) {
+                    messageText = messageText.replace(/^#(bot|teste)\s*/i, '');
+                    console.log(`🧪 [AUTO-TESTE] Processando comando próprio: "${messageText}"`);
+                } else {
+                    continue; // Ignora outras mensagens que você mesmo envia
+                }
+            }
+
+            const senderPhone = remoteJid.replace('@s.whatsapp.net', '');
+            const senderName = msg.pushName || 'Você (Teste)';
 
             console.log(`📩 Mensagem recebida de [${senderName} - ${senderPhone}]: "${messageText}"`);
 
