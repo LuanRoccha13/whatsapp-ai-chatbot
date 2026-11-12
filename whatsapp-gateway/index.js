@@ -72,7 +72,11 @@ async function startWhatsApp() {
 
             const remoteJid = msg.key.remoteJid || '';
             const isGroup = remoteJid.endsWith('@g.us');
-            if (isGroup) continue; // Ignora grupos para não poluir
+            const isNewsletter = remoteJid.endsWith('@newsletter');
+            const isBroadcast = remoteJid.includes('broadcast');
+            
+            // Ignora grupos, canais/newsletters e status/broadcasts
+            if (isGroup || isNewsletter || isBroadcast) continue;
 
             const senderPhone = remoteJid.replace('@s.whatsapp.net', '');
             const senderName = msg.pushName || 'Cliente';
