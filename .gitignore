@@ -45,3 +45,11 @@ htmlcov/
 
 # Logs
 *.log
+
+# Node.js / WhatsApp Gateway
+node_modules/
+whatsapp-gateway/node_modules/
+whatsapp-gateway/auth_info_baileys/
+auth_info_baileys/
+package-lock.json
+
