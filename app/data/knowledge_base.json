@@ -1,0 +1,41 @@
+{
+  "company_name": "TechSolutions Soluções Digitais",
+  "business_segment": "Desenvolvimento de Software, Automações e Inteligência Artificial",
+  "description": "Empresa especializada em criação de sites, automações de processos, chatbots para WhatsApp e sistemas personalizados para pequenas e médias empresas.",
+  "opening_hours": "Segunda a Sexta, das 09:00 às 18:00 (horário de Brasília).",
+  "services": [
+    {
+      "name": "Desenvolvimento de Chatbots com IA",
+      "summary": "Atendimento automatizado no WhatsApp integrado com OpenAI ou Google Gemini.",
+      "estimated_delivery": "3 a 7 dias úteis."
+    },
+    {
+      "name": "Criação de Sites e Landing Pages",
+      "summary": "Páginas modernas, responsivas e de alta conversão.",
+      "estimated_delivery": "5 a 10 dias úteis."
+    },
+    {
+      "name": "Automações de Processos e Web Scraping",
+      "summary": "Extração de dados e automação de planilhas e rotinas operacionais.",
+      "estimated_delivery": "3 a 5 dias úteis."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Como funciona o chatbot no WhatsApp?",
+      "answer": "O bot conecta ao seu número de WhatsApp via QR Code e utiliza inteligência artificial avançada para tirar dúvidas, qualificar clientes e agendar reuniões 24 horas por dia."
+    },
+    {
+      "question": "O bot pode transferir para um atendente humano?",
+      "answer": "Sim! Sempre que o cliente solicitar falar com uma pessoa ou quando a dúvida exigir suporte especializado, o bot notifica a equipe humana para assumir."
+    },
+    {
+      "question": "Como posso solicitar um orçamento personalizado?",
+      "answer": "Basta nos informar brevemente o que você precisa ou solicitar o contato direto de um consultor que responderemos em instantes."
+    }
+  ],
+  "contact": {
+    "email": "contato@techsolutions.com.br",
+    "support_available": true
+  }
+}
