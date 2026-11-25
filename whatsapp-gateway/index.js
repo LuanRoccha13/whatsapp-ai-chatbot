@@ -44,11 +44,17 @@ async function startWhatsApp() {
         }
 
         if (connection === 'close') {
-            const shouldReconnect = (lastDisconnect?.error)?.output?.statusCode !== DisconnectReason.loggedOut;
-            console.log(`❌ Conexão fechada. Reconectando: ${shouldReconnect}`);
+            const isLoggedOut = (lastDisconnect?.error)?.output?.statusCode === DisconnectReason.loggedOut;
+            console.log(`❌ Conexão fechada. LoggedOut: ${isLoggedOut}`);
             connectionStatus = 'disconnected';
             currentQR = null;
-            if (shouldReconnect) {
+            if (isLoggedOut) {
+                console.log('Sessão expirada/deslogada. Limpando credenciais antigas para gerar novo QR Code...');
+                try {
+                    fs.rmSync(authFolder, { recursive: true, force: true });
+                } catch (e) {}
+                setTimeout(startWhatsApp, 2000);
+            } else {
                 setTimeout(startWhatsApp, 3000);
             }
         } else if (connection === 'open') {
